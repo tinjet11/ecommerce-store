@@ -14,18 +14,6 @@ const Summary = () => {
     const items = useCart((state) => state.items);
     const removeAll = useCart((state) => state.removeAll);
 
-    const [isMounted, setIsMounted] = useState(false);
-
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
-
-
-    if (!isMounted) {
-        return null;
-    }
-
-
     useEffect(() => {
         if (searchParams.get('success')) {
             toast.success('Payment completed.');
@@ -48,6 +36,18 @@ const Summary = () => {
 
         window.location = response.data.url;
     }
+
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+
+    if (!isMounted) {
+        return null;
+    }
+
 
     return (
         <div
